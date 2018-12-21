@@ -1,0 +1,33 @@
+#!/usr/bin/env groovy
+import jenkins.model.*
+import hudson.util.PersistedList
+import jenkins.branch.*
+import jenkins.plugins.git.*
+//import org.jenkinsci.plugins.workflow.
+import org.jenkinsci.plugins.workflow.job.WorkflowJob;
+
+// Git repo url containing a Jenkinsfile
+String gitRepoUrl = "https://github.com/tapansirol/jpet-store"
+
+// Job name based on repository name
+String jobName = 'jpetstore1'
+//String jobName = gitRepoUrl.tokenize(".")[-2].tokenize("/")[-1]
+
+
+// Create MultiBranch pipeline
+Jenkins jenkins = Jenkins.get()
+WorkflowJob mbp = jenkins.createProject(WorkflowJob.class, jobName)
+
+// Define Git repo
+//GitSCMSource(id, gitRepo, credentialsId, includes, excludes, ignoreOnPushNotifications)
+GitSCMSource gitSCMSource = new GitSCMSource("not_null", gitRepoUrl, "", "*", "", false)
+BranchSource branchSource = new BranchSource(gitSCMSource)
+
+// Add Git repo as source to MBP
+sources.add(mbp.getSourcesList())
+
+// Trigger initial build (scan)
+jenkins.getItem(jobName).scheduleBuild()
+
+// Save config
+jenkins.save()

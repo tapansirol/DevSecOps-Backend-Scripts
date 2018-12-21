@@ -1,0 +1,37 @@
+*************************************************************************************************************************************************
+Steps to setup DevSecOps pipeline:
+
+1. Untar given file by using command:
+	tar -zxvf DevsecOps.tar.xz
+2.Give permission to extracted folder
+3.To start all container, go inside unzipped folder using command cd DevSecOps, and execute start-container.sh script
+   ./start-container.sh
+4.To open jenkins, urbancode deploy, urbancode velocity use following urls
+	jenkins --> http://ip:9292
+        Urbancode deploy --> https://IP-Address:8443
+        Urbancode velocity --> https://IP-Address
+   Note: replace IP-Address with ip of your machine  
+
+
+*************************************************************************************************************************************************
+
+To stop pipeline
+
+1. In DevSecOps directory execute stop_all_containers.sh script by running following command
+	$./stop_all_containers.sh
+
+************************************************************************************************************************************************
+
+To Remove all containers
+
+1. In DevSecOps directory execute remove_all_containers.sh by running following command
+
+  Note: This will remove all containers data and container from you machine, you can't recover data.
+
+***********************************************************************************************************************************************
+
+URLs for Tools:
+
+	Jenkins --> http://IP-Address:9292
+	Urbancode Velocity --> https://IP-Address
+	Urbancode Deploy --> https://IP-Address:8443

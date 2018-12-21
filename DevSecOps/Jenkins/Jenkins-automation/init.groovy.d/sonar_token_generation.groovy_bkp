@@ -1,0 +1,46 @@
+#!/usr/bin/env groovy
+
+/*
+Execute this file by typing `./sonarqube-auth.groovy TokenName`
+In order to specify the location of the SonarQube server, export to the environment
+variable `SONARQUBE_URL` which should contain the URL to the ROOT of the SonarQube web application.
+Example:
+export SONARQUBE_URL="http://sonarqube.example.com/"
+ */
+
+
+import groovy.json.JsonSlurper
+
+def tokenName = "sonar-auto-token"
+
+if (!(tokenName)) {
+    println("Token name MUST be specified on the command line.")
+    exit(1)
+}
+
+def sonarHost = System.getenv().get("SONARQUBE_URL")
+if (!(sonarHost ==~ $/https?://.*/$)) {
+    sonarHost = 'http://localhost:9000/'
+}
+println("SonarQube Host: ${sonarHost}")
+
+def post = new URL("${sonarHost}api/user_tokens/generate").openConnection()
+def message = "name=${tokenName}&login=admin"
+post.setRequestMethod("POST")
+post.setDoOutput(true)
+post.setRequestProperty("Content-Type", "application/x-www-form-urlencoded")
+def authString = "admin:admin".bytes.encodeBase64().toString()
+post.setRequestProperty("Authorization", "Basic ${authString}")
+post.getOutputStream().write(message.getBytes("UTF-8"))
+def rc = post.getResponseCode()
+
+if (rc == 200) {
+    def jsonBody = post.getInputStream().getText()
+    def jsonParser = new JsonSlurper()
+    def data = jsonParser.parseText(jsonBody)
+    def token = data.token
+    println("Auth Token: ${token}")
+} else {
+    println("Request failed")
+    println(post.getErrorStream().getText())
+}

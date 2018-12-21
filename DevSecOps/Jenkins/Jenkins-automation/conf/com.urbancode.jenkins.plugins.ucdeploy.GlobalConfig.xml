@@ -1,0 +1,12 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<com.urbancode.jenkins.plugins.ucdeploy.GlobalConfig_-GlobalConfigDescriptor plugin="ibm-ucdeploy-pipeline-open@2.9.open">
+  <sites>
+    <com.urbancode.jenkins.plugins.ucdeploy.UCDeploySite>
+      <profileName>ucd-server</profileName>
+      <url>https://34.234.131.215:8443/ucd</url>
+      <user>admin</user>
+      <password>admin</password>
+      <trustAllCerts>true</trustAllCerts>
+    </com.urbancode.jenkins.plugins.ucdeploy.UCDeploySite>
+  </sites>
+</com.urbancode.jenkins.plugins.ucdeploy.GlobalConfig_-GlobalConfigDescriptor>
