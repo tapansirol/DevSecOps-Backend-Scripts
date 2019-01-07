@@ -6,22 +6,19 @@ import hudson.plugins.sonar.SonarRunnerInstaller
 import hudson.plugins.sonar.model.TriggersConfig
 import hudson.tools.InstallSourceProperty
 
-
 def env = System.getenv()
-def ip = env['IP']
-def sonar_port = env['SONAR_PORT']
-
-//Creating sonar server url
-sonar_url = 'http://'+ ip + ':' + sonar_port
-
-//Retrieving  sonar sonar authentication token. This is the token generated through shell script and set as environment variable
+def id = env['def env = System.getenv()
+def ip = env['HOST_IP']
+def port = env['SONAR_PORT']
+def sonarHost = "http://" + ip + ":" + port
 def token = System.getenv("SONAR_AUTH_TOKEN");
 
-def sonarConfig = Jenkins.instance.getDescriptor('hudson.plugins.sonar.SonarGlobalConfiguration')
+def sonarConfig = Jenkinsi.instance.getDescriptor('hudson.plugins.sonar.SonarGlobalConfiguration')
 
 SonarInstallation sonarInst = new SonarInstallation(
-        "sonar-server", sonar_url, token, "", "", new TriggersConfig(), "")
+        "sonar", sonarHost, token, "", "", new TriggersConfig(), "")
 sonarConfig.setInstallations(sonarInst)
 sonarConfig.setBuildWrapperEnabled(true)
 sonarConfig.save()
+
 

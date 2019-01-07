@@ -3,7 +3,7 @@
   <sites>
     <com.urbancode.jenkins.plugins.ucdeploy.UCDeploySite>
       <profileName>ucd-server</profileName>
-      <url>https://34.234.131.215:8443/ucd</url>
+      <url>https://localhost:8443</url>
       <user>admin</user>
       <password>admin</password>
       <trustAllCerts>true</trustAllCerts>
