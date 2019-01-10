@@ -1,0 +1,504 @@
+{
+    "name": "JPetStore",
+    "description": "",
+    "enforceCompleteSnapshots": false,
+    "propSheet": {"properties": []},
+    "templatePropSheet": {
+        "name": "template",
+        "properties": []
+    },
+    "components": [{
+        "name": "jenkins-jpet-component",
+        "description": "",
+        "created": 1545990327548,
+        "componentType": "STANDARD",
+        "ignoreQualifiers": 0,
+        "importAutomatically": false,
+        "useVfs": true,
+        "active": true,
+        "deleted": false,
+        "defaultVersionType": "FULL",
+        "cleanupDaysToKeep": 0,
+        "cleanupCountToKeep": 0,
+        "envPropDefs": [],
+        "resPropDefs": [],
+        "versionPropDefs": [],
+        "propSheetGroup": {"propSheets": [
+            {
+                "name": "template",
+                "properties": []
+            },
+            {
+                "name": "custom",
+                "properties": []
+            }
+        ]},
+        "processes": [{
+            "name": "Deploy",
+            "description": "",
+            "defaultWorkingDir": "${p:resource\/work.dir}\/${p:component.name}",
+            "takesVersion": true,
+            "inventoryActionType": "ADD",
+            "status": "Active",
+            "configActionType": "ADD",
+            "active": true,
+            "path": "components\/167f4344-cfc5-9739-2a6d-728ebdc484dd\/processes\/167f4344-dda9-e34e-5515-8d95386fb54d",
+            "deleted": false,
+            "propDefs": [],
+            "rootActivity": {
+                "edges": [
+                    {
+                        "to": "Start Tomcat",
+                        "from": "Shell",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Download Artifacts",
+                        "type": "ALWAYS",
+                        "value": ""
+                    },
+                    {
+                        "to": "f903df947c07bbccc1d75b3577b772",
+                        "from": "Copy Directory",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Copy Directory",
+                        "from": "Start Tomcat",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "Shell",
+                        "from": "Download Artifacts",
+                        "type": "SUCCESS",
+                        "value": ""
+                    }
+                ],
+                "offsets": [
+                    {
+                        "name": "Start Tomcat",
+                        "x": -44.00000000000006,
+                        "y": 360,
+                        "h": 80,
+                        "w": 240
+                    },
+                    {
+                        "name": "f903df947c07bbccc1d75b3577b772",
+                        "x": -11.999999999999964,
+                        "y": 600,
+                        "h": 90,
+                        "w": 130
+                    },
+                    {
+                        "name": "Copy Directory",
+                        "x": -59.00000000000003,
+                        "y": 460,
+                        "h": 80,
+                        "w": 270
+                    },
+                    {
+                        "name": "Download Artifacts",
+                        "x": -59,
+                        "y": 120,
+                        "h": 80,
+                        "w": 300
+                    },
+                    {
+                        "name": "Shell",
+                        "x": -14.000000000000078,
+                        "y": 240,
+                        "h": 80,
+                        "w": 180
+                    }
+                ],
+                "layoutMode": "manual",
+                "type": "graph",
+                "name": "3a5d42d2-10f1-410e-b8ce-a9c581a4990d",
+                "children": [
+                    {
+                        "type": "finish",
+                        "name": "f903df947c07bbccc1d75b3577b772",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "pluginVersion": 29,
+                        "commandName": "Download Artifacts",
+                        "pluginName": "IBM UrbanCode Deploy Versioned File Storage",
+                        "authTokenRestriction": "20000001-0001-0001-0001-000000000000",
+                        "properties": {
+                            "directoryOffset": ".",
+                            "artifactSetBaseDir": "",
+                            "fileIncludePatterns": "**\/*",
+                            "fileExcludePatterns": "",
+                            "syncMode": "true",
+                            "fullVerification": "true",
+                            "setFileExecuteBits": "false",
+                            "verifyFileIntegrity": "false",
+                            "versionId": "${p:version.id}",
+                            "serverUrl": "${p:server.url}",
+                            "compId": "${p:component.id}",
+                            "resId": "${p:resource.id}",
+                            "charset": "",
+                            "label": ""
+                        },
+                        "cachedAuthTokenRestriction": {
+                            "name": "System Default",
+                            "description": "Used by default for any plugin steps without a specified token restriction",
+                            "restrictions": [{
+                                "verb": "ALL",
+                                "url": "\/*"
+                            }]
+                        },
+                        "type": "plugin",
+                        "name": "Download Artifacts",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "pluginVersion": 7,
+                        "commandName": "Start Tomcat",
+                        "pluginName": "Tomcat",
+                        "authTokenRestriction": "20000001-0001-0001-0001-000000000000",
+                        "properties": {
+                            "launcherLocation": "\/opt\/ibm-ucd\/agent\/var\/work\/apache-server\/bin\/startup.sh",
+                            "options": "",
+                            "timeout": "",
+                            "port": "9999",
+                            "hostname": "",
+                            "catalinaBase": "",
+                            "catalinaHome": "",
+                            "javaHome": ""
+                        },
+                        "cachedAuthTokenRestriction": {
+                            "name": "System Default",
+                            "description": "Used by default for any plugin steps without a specified token restriction",
+                            "restrictions": [{
+                                "verb": "ALL",
+                                "url": "\/*"
+                            }]
+                        },
+                        "type": "plugin",
+                        "name": "Start Tomcat",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "pluginVersion": 63,
+                        "commandName": "Copy Directory",
+                        "pluginName": "File Utils",
+                        "authTokenRestriction": "20000001-0001-0001-0001-000000000000",
+                        "properties": {
+                            "sourceDir": ".",
+                            "destDirList": "\/opt\/ibm-ucd\/agent\/var\/work\/apache-server\/webapps",
+                            "includes": "**\/*",
+                            "excludes": "",
+                            "mapperRules": "",
+                            "force": "false",
+                            "flatten": "false",
+                            "preserveLastModified": "false"
+                        },
+                        "cachedAuthTokenRestriction": {
+                            "name": "System Default",
+                            "description": "Used by default for any plugin steps without a specified token restriction",
+                            "restrictions": [{
+                                "verb": "ALL",
+                                "url": "\/*"
+                            }]
+                        },
+                        "type": "plugin",
+                        "name": "Copy Directory",
+                        "children": []
+                    },
+                    {
+                        "allowFailure": false,
+                        "useImpersonation": false,
+                        "showHidden": false,
+                        "impersonationUseSudo": false,
+                        "pluginVersion": 9,
+                        "commandName": "Shell",
+                        "pluginName": "Shell",
+                        "authTokenRestriction": "20000001-0001-0001-0001-000000000000",
+                        "properties": {
+                            "directoryOffset": ".",
+                            "shellInterpreter": "",
+                            "scriptBody": "if [ ! -d  \/opt\/ibm-ucd\/agent\/var\/work\/apache-server ];\r\nthen\r\n        echo \"Tomcat Server not found\"\r\n        echo \"Setting up Tomcat Apache\"\r\n        echo \"Downlond apache-tomcat-8.5.37\"\r\n        wget  http:\/\/mirrors.wuchna.com\/apachemirror\/tomcat\/tomcat-8\/v8.5.37\/bin\/apache-tomcat-8.5.37.zip\r\n        cp apache-tomcat-8.5.37.zip  \/opt\/ibm-ucd\/agent\/var\/work\/\r\n        cd \/opt\/ibm-ucd\/agent\/var\/work\/\r\n        unzip apache-tomcat-8.5.37.zip\r\n        mv apache-tomcat-8.5.37 apache-server\r\n        cd apache-server\/bin\r\n        chmod -R 777 *\r\nfi\r\necho \"not found ***************\"\r\nsed -i 's\/port=\"8080\"\/port=\"9999\"\/' \/opt\/ibm-ucd\/agent\/var\/work\/apache-server\/conf\/server.xml",
+                            "runAsDaemon": "false",
+                            "outputFile": ""
+                        },
+                        "cachedAuthTokenRestriction": {
+                            "name": "System Default",
+                            "description": "Used by default for any plugin steps without a specified token restriction",
+                            "restrictions": [{
+                                "verb": "ALL",
+                                "url": "\/*"
+                            }]
+                        },
+                        "type": "plugin",
+                        "name": "Shell",
+                        "children": []
+                    }
+                ]
+            }
+        }],
+        "configTemplates": [],
+        "genericProcesses": [],
+        "teamMappings": [],
+        "tags": []
+    }],
+    "environments": [
+        {
+            "name": "JPetStore_Dev",
+            "description": "",
+            "color": "#00B2EF",
+            "requireApprovals": false,
+            "noSelfApprovals": false,
+            "exemptProcesses": [],
+            "lockSnapshots": false,
+            "requireSnapshots": false,
+            "cleanupDaysToKeep": 0,
+            "cleanupCountToKeep": 0,
+            "enableProcessHistoryCleanup": true,
+            "useSystemDefaultDays": true,
+            "historyCleanupDaysToKeep": 365,
+            "order": 0,
+            "active": true,
+            "propSheet": {"properties": []},
+            "templatePropSheet": {
+                "name": "template",
+                "properties": []
+            },
+            "baseResources": [{
+                "path": "\/jpetstore-resources",
+                "id": "167f45b2-beac-9efe-2ef2-83f5f6fd064b"
+            }],
+            "componentPropSheets": [{
+                "properties": [],
+                "componentName": "jenkins-jpet-component"
+            }],
+            "versionConditions": [],
+            "teamMappings": []
+        },
+        {
+            "name": "QA_Env",
+            "description": "",
+            "color": "#FDB813",
+            "requireApprovals": false,
+            "noSelfApprovals": false,
+            "exemptProcesses": [],
+            "lockSnapshots": false,
+            "requireSnapshots": false,
+            "cleanupDaysToKeep": 0,
+            "cleanupCountToKeep": 0,
+            "enableProcessHistoryCleanup": true,
+            "useSystemDefaultDays": true,
+            "historyCleanupDaysToKeep": 365,
+            "order": 1,
+            "active": true,
+            "propSheet": {"properties": []},
+            "templatePropSheet": {
+                "name": "template",
+                "properties": []
+            },
+            "baseResources": [],
+            "componentPropSheets": [{
+                "properties": [],
+                "componentName": "jenkins-jpet-component"
+            }],
+            "versionConditions": [],
+            "teamMappings": []
+        },
+        {
+            "name": "Prod_Env",
+            "description": "",
+            "color": "#D9182D",
+            "requireApprovals": true,
+            "noSelfApprovals": false,
+            "exemptProcesses": [],
+            "lockSnapshots": false,
+            "requireSnapshots": false,
+            "cleanupDaysToKeep": 0,
+            "cleanupCountToKeep": 0,
+            "enableProcessHistoryCleanup": true,
+            "useSystemDefaultDays": true,
+            "historyCleanupDaysToKeep": 365,
+            "order": 2,
+            "active": true,
+            "propSheet": {"properties": []},
+            "templatePropSheet": {
+                "name": "template",
+                "properties": []
+            },
+            "approvalProcess": {"rootActivity": {
+                "edges": [
+                    {
+                        "to": "0d4ccc519578219b9148ce6d7c4b1c",
+                        "from": "1f97c4f0b36868004c26b9b0ac88ef",
+                        "type": "SUCCESS",
+                        "value": ""
+                    },
+                    {
+                        "to": "1f97c4f0b36868004c26b9b0ac88ef",
+                        "type": "ALWAYS",
+                        "value": ""
+                    }
+                ],
+                "offsets": [
+                    {
+                        "name": "1f97c4f0b36868004c26b9b0ac88ef",
+                        "x": -50.46391752577321,
+                        "y": 170,
+                        "h": 70,
+                        "w": 230
+                    },
+                    {
+                        "name": "0d4ccc519578219b9148ce6d7c4b1c",
+                        "x": -5,
+                        "y": 420,
+                        "h": 80,
+                        "w": 120
+                    }
+                ],
+                "layoutMode": "manual",
+                "type": "graph",
+                "name": "6ade39c5-574e-4d59-b90e-220340e2ef95",
+                "children": [
+                    {
+                        "type": "finish",
+                        "name": "0d4ccc519578219b9148ce6d7c4b1c",
+                        "children": []
+                    },
+                    {
+                        "roleRestrictionData": {
+                            "contextType": "APPLICATION",
+                            "roleRestrictions": [{"roleName": "Administrator"}]
+                        },
+                        "propDefs": [],
+                        "templateName": "ApprovalCreated",
+                        "commentRequired": false,
+                        "commentPrompt": "",
+                        "role": {},
+                        "type": "applicationApprovalTask",
+                        "name": "1f97c4f0b36868004c26b9b0ac88ef",
+                        "children": []
+                    }
+                ]
+            }},
+            "baseResources": [],
+            "componentPropSheets": [{
+                "properties": [],
+                "componentName": "jenkins-jpet-component"
+            }],
+            "versionConditions": [],
+            "teamMappings": []
+        }
+    ],
+    "statuses": [],
+    "processes": [{
+        "name": "Deploy-JPetStore",
+        "description": "Created from Jenkins",
+        "inventoryManagementType": "AUTOMATIC",
+        "offlineAgentHandling": "PRE_EXECUTION_CHECK",
+        "rootActivity": {
+            "edges": [
+                {
+                    "to": "Install Components",
+                    "type": "ALWAYS",
+                    "value": ""
+                },
+                {
+                    "to": "FINISH",
+                    "from": "Install Components",
+                    "type": "ALWAYS",
+                    "value": ""
+                }
+            ],
+            "offsets": [
+                {
+                    "name": "Install Components",
+                    "x": -21,
+                    "y": 191,
+                    "h": 50,
+                    "w": 330
+                },
+                {
+                    "name": "FINISH",
+                    "x": -5,
+                    "y": 420,
+                    "h": 50,
+                    "w": 90
+                }
+            ],
+            "layoutMode": "unknown",
+            "type": "graph",
+            "name": "b803bdfe-4212-44b1-97a5-90d092767b8c",
+            "children": [
+                {
+                    "type": "finish",
+                    "name": "FINISH",
+                    "children": []
+                },
+                {
+                    "name": "Install Components",
+                    "properties": [
+                        {
+                            "name": "activity.componentProcess.name",
+                            "value": "Deploy"
+                        },
+                        {
+                            "name": "maxIteration",
+                            "value": "-1"
+                        },
+                        {
+                            "name": "runOnlyOnFirst",
+                            "value": "false"
+                        },
+                        {
+                            "name": "failFast",
+                            "value": "false"
+                        }
+                    ],
+                    "type": "multiComponentEnvironmentIterator",
+                    "children": [{
+                        "properties": [{
+                            "name": "runOnlyOnFirst",
+                            "value": "false"
+                        }],
+                        "type": "componentEnvironmentIterator",
+                        "name": "aa5d783b5ccb422b9ecdaa8bd301a51a",
+                        "children": [{
+                            "status": "Active",
+                            "type": "inventoryVersionDiff",
+                            "name": "651d5e62-7dc1-41e5-98e5-a29e170072da",
+                            "children": [{
+                                "componentProcessName": "Deploy",
+                                "allowFailure": false,
+                                "properties": {"activity.componentProcess.name": "Deploy"},
+                                "type": "componentProcess",
+                                "name": "Deploy-JPetStore",
+                                "children": []
+                            }]
+                        }]
+                    }]
+                }
+            ]
+        },
+        "propDefs": [],
+        "versionPresets": []
+    }],
+    "genericProcesses": [],
+    "teamMappings": [],
+    "tags": []
+}
