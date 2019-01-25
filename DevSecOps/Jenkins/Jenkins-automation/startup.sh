@@ -1,4 +1,2 @@
-docker pull jenkins:latest
 docker build -t myjenkins .
-docker run --env-file ./env.list -d -p 9292:8080  -v `pwd`/downloads:/var/jenkins_home/downloads -v `pwd`/jobs:/var/jenkins_home/jobs/ --rm --name myjenkins myjenkins:latest
-
+docker run  -d -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/usr/bin/docker -v /home/config/onetest:/var/jenkins_home/onetest  --env-file /home/config/config.properties -p 9292:8080 myjenkins

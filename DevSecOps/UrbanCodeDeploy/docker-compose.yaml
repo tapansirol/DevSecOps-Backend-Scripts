@@ -28,7 +28,7 @@ services:
       - ucd-server
       - ucd-relay
     ports:
-      - 9090:9090
+      - 9999:9999
   ucd-relay:
     image: ibmcom/ucdr
     ports:
